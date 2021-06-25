@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	</head>
+	<body>
+		<div>点击按钮获取JSON数据</div>
+		<a  href="www" id="button"/>确定</a>
+		<div id="result"></div>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#button').click(function() {
+					$.ajax({
+						type: "GET",
+						url: "json.txt",
+						dataType: "json",
+						success: function(data) {
+							var music = "<ul>";
+							//i表示在data中的索引位置，n表示包含的信息的对象 
+							$.each(data, function(i, n) {
+								//获取对象中属性为optionsValue的值 
+								music += "<li>" + n["optionValue"] + "</li>";
+							});
+							music += "</ul>";
+							$('#result').append(music);
+						}
+					});
+					return false;
+				});
+			});
+		</script>
+	</body>
+</html>
